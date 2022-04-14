@@ -1,24 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./index.css";
+import { ReactComponent as AboutIcon } from "./icons/about.svg";
+import { ReactComponent as Contact } from "./icons/contact.svg";
+import { ReactComponent as Resume } from "./icons/resume.svg";
+import PDF from "./DucNguyen_Resume_SWE.pdf";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Navbar>
+      <NavItem icon={<AboutIcon />} />
+      <NavItem icon={<Contact />} />
+      <NavItem icon={<Resume />} link={PDF} />
+    </Navbar>
+  );
+}
+
+function Navbar(props) {
+  return (
+    <nav className="navbar">
+      <ul className="navbar-nav">{props.children}</ul>
+    </nav>
+  );
+}
+
+function NavItem(props) {
+  return (
+    <li className="nav-item">
+      <a href={props.link} target="_blank" className="icon-button">
+        {props.icon}
+      </a>
+    </li>
   );
 }
 
