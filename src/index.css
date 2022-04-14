@@ -33,6 +33,16 @@ a {
   text-decoration: none;;
 }
 
+h1 {
+  margin-right: auto;
+  font-family: 'Square Peg', cursive;
+  justify-content: center;
+  align-items: center;
+  color: aliceblue;
+  font-size: 30px;
+  margin-top: 14px;
+}
+
 .navbar {
   height: var(--nav-size);
   background-color: var(--bg);
@@ -44,7 +54,6 @@ a {
   max-width: 100%;
   height: 100%;
   display: flex;
-  justify-content: flex-end;
 }
 
 .nav-item {
@@ -145,10 +154,31 @@ a {
   transform: translateX(0%);
   transition: all var(--speed) ease;
 }
-.menu-secondary-exit {
 
-}
 .menu-secondary-exit-active {
   transform: translateX(110%);
   transition: all var(--speed) ease;
+}
+
+header {
+  padding: 1em;
+  margin-bottom: 1em;
+  padding-bottom: 1em;
+  text-align: center;
+  background-color: aliceblue;
+}
+
+@keyframes color-rotate {
+  from {
+      filter: hue-rotate(0deg);
+  }
+  to {
+      filter: hue-rotate(360deg);
+  }
+}
+
+.logo:hover {
+  animation: color-rotate 1s;
+  animation-iteration-count: infinite; 
+  animation-direction: alternate;
 }

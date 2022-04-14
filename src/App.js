@@ -7,18 +7,27 @@ import { ReactComponent as RightChevronIcon } from "./icons/right_chevron.svg";
 import { ReactComponent as LeftChevronIcon } from "./icons/left_chevron.svg";
 import { ReactComponent as DownChevronIcon } from "./icons/down_chevron.svg";
 
-import PDF from "./DucNguyen_Resume_SWE.pdf";
+import TempTwo from "./images/cat_two.png";
+import Logo from "./images/cat.png";
+import Temp from "./images/logo.png";
+import PDF from "./documents/DucNguyen_Resume_SWE.pdf";
 import { useState, useEffect, useRef } from "react";
 import { CSSTransition } from "react-transition-group";
 
 function App() {
   return (
-    <Navbar>
-      <NavItem icon={<Contact />} />
-      <NavItem icon={<DownChevronIcon />}>
-        <DropdownMenu></DropdownMenu>
-      </NavItem>
-    </Navbar>
+    <React.Fragment>
+      <Navbar>
+        <h1>Duc Viet Nguyen</h1>
+        <NavItem icon={<Contact />} />
+        <NavItem icon={<DownChevronIcon />}>
+          <DropdownMenu></DropdownMenu>
+        </NavItem>
+      </Navbar>
+      <header>
+        <img src={Logo} className="logo" width={200} height={200} />
+      </header>
+    </React.Fragment>
   );
 }
 
@@ -85,7 +94,7 @@ function DropdownMenu() {
         <div className="menu">
           <DropdownItem leftIcon={<AboutIcon />}>About Me</DropdownItem>
           <DropdownItem leftIcon={<RightChevronIcon />} goToMenu="settings">
-            Forth
+            Documents
           </DropdownItem>
         </div>
       </CSSTransition>
@@ -99,7 +108,7 @@ function DropdownMenu() {
       >
         <div className="menu">
           <DropdownItem goToMenu="main" leftIcon={<LeftChevronIcon />}>
-            Back
+            Return
           </DropdownItem>
           <DropdownItem leftIcon={<Resume />} link={PDF}>
             Resume
