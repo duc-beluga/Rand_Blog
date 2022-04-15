@@ -1,121 +1,38 @@
 import React from "react";
-import "./index.css";
-import { ReactComponent as AboutIcon } from "./icons/about.svg";
-import { ReactComponent as Contact } from "./icons/contact.svg";
-import { ReactComponent as Resume } from "./icons/resume.svg";
-import { ReactComponent as RightChevronIcon } from "./icons/right_chevron.svg";
-import { ReactComponent as LeftChevronIcon } from "./icons/left_chevron.svg";
+import { Route, Routes } from "react-router-dom";
+import { ReactComponent as ContactIcon } from "./icons/contact.svg";
 import { ReactComponent as DownChevronIcon } from "./icons/down_chevron.svg";
-
-import TempTwo from "./images/cat_two.png";
-import Logo from "./images/cat.png";
-import Temp from "./images/logo.png";
-import PDF from "./documents/DucNguyen_Resume_SWE.pdf";
-import { useState, useEffect, useRef } from "react";
-import { CSSTransition } from "react-transition-group";
+import { ReactComponent as BlogIcon } from "./icons/blog.svg";
+import { ReactComponent as SunIcon } from "./icons/sun.svg";
+import { ReactComponent as MoonnIcon } from "./icons/moon.svg";
+import Navbar from "./components/NavBar";
+import NavItem from "./components/NavItem";
+import DropdownMenu from "./components/DropdownMenu";
+import Home from "./components/Home";
+import NavSearch from "./components/NavSearch";
+import Contact from "./components/Contact";
 
 function App() {
   return (
     <React.Fragment>
       <Navbar>
-        <h1>Duc Viet Nguyen</h1>
-        <NavItem icon={<Contact />} />
+        <a className="header" href="/">
+          Duc Viet Nguyen
+        </a>
+        <NavSearch />
+        <NavItem icon={<SunIcon />} link="blog" />
+        <NavItem icon={<MoonnIcon />} link="blog" />
+        <NavItem icon={<ContactIcon />} link="contact" />
+        <NavItem icon={<BlogIcon />} link="blog" />
         <NavItem icon={<DownChevronIcon />}>
           <DropdownMenu></DropdownMenu>
         </NavItem>
       </Navbar>
-      <header>
-        <img src={Logo} className="logo" width={200} height={200} />
-      </header>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
     </React.Fragment>
-  );
-}
-
-function Navbar(props) {
-  return (
-    <nav className="navbar">
-      <ul className="navbar-nav">{props.children}</ul>
-    </nav>
-  );
-}
-
-function NavItem(props) {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <li className="nav-item">
-      <a href="#" className="icon-button" onClick={() => setOpen(!open)}>
-        {props.icon}
-      </a>
-
-      {open && props.children}
-    </li>
-  );
-}
-
-function DropdownMenu() {
-  const [activeMenu, setActiveMenu] = useState("main");
-  const [menuHeight, setMenuHeight] = useState(null);
-  const dropdownRef = useRef(null);
-
-  useEffect(() => {
-    setMenuHeight(dropdownRef.current?.firstChild.offsetHeight);
-  }, []);
-
-  function calcHeight(el) {
-    const height = el.offsetHeight;
-    setMenuHeight(height);
-  }
-
-  function DropdownItem(props) {
-    return (
-      <a
-        href={props.link}
-        target="_blank"
-        className="menu-item"
-        onClick={() => props.goToMenu && setActiveMenu(props.goToMenu)}
-      >
-        <span className="icon-button">{props.leftIcon}</span>
-        {props.children}
-        <span className="icon-right">{props.rightIcon}</span>
-      </a>
-    );
-  }
-
-  return (
-    <div className="dropdown" style={{ height: menuHeight }} ref={dropdownRef}>
-      <CSSTransition
-        in={activeMenu === "main"}
-        timeout={500}
-        classNames="menu-primary"
-        unmountOnExit
-        onEnter={calcHeight}
-      >
-        <div className="menu">
-          <DropdownItem leftIcon={<AboutIcon />}>About Me</DropdownItem>
-          <DropdownItem leftIcon={<RightChevronIcon />} goToMenu="settings">
-            Documents
-          </DropdownItem>
-        </div>
-      </CSSTransition>
-
-      <CSSTransition
-        in={activeMenu === "settings"}
-        timeout={500}
-        classNames="menu-secondary"
-        unmountOnExit
-        onEnter={calcHeight}
-      >
-        <div className="menu">
-          <DropdownItem goToMenu="main" leftIcon={<LeftChevronIcon />}>
-            Return
-          </DropdownItem>
-          <DropdownItem leftIcon={<Resume />} link={PDF}>
-            Resume
-          </DropdownItem>
-        </div>
-      </CSSTransition>
-    </div>
   );
 }
 
