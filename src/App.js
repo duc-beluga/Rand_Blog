@@ -20,8 +20,8 @@ function App() {
           Duc Viet Nguyen
         </a>
         <NavSearch />
-        <NavItem icon={<SunIcon />} link="blog" />
-        <NavItem icon={<MoonnIcon />} link="blog" />
+        <NavItem icon={<SunIcon />} onClick={true} />
+        <NavItem icon={<MoonnIcon />} onClick={true} />
         <NavItem icon={<ContactIcon />} link="contact" />
         <NavItem icon={<BlogIcon />} link="blog" />
         <NavItem icon={<DownChevronIcon />}>

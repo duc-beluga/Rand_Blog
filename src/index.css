@@ -199,7 +199,6 @@ header {
   margin-bottom: 1em;
   padding-bottom: 1em;
   text-align: center;
-  background-color: aliceblue;
 }
 
 @keyframes color-rotate {
@@ -209,6 +208,10 @@ header {
   to {
       filter: hue-rotate(360deg);
   }
+}
+
+.logo {
+  border-radius: 0.7rem;
 }
 
 .logo:hover {
