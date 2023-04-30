@@ -1,3 +1,2 @@
-My personal Blog.
-<br/>
-![](https://github.gatech.edu/dnguyen416/Blog/blob/main/Blog.gif)
+Testing out css var and css random animation.
+_Moving from School's Github_
